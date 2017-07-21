@@ -28,6 +28,7 @@ public class ControllerImpl implements Controller{
 
     private void playGame() {
         model.setSecretNumber(getRandom(model.getMinRange(), model.getMaxRange()));
+        view.printMessage(View.GUESS);
         Scanner sc = new Scanner(System.in);
         Integer current;
         while (!model.isWon()) {

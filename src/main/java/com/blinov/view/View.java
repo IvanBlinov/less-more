@@ -8,10 +8,11 @@ import java.util.List;
 public interface View {
 
     String GREETINGS = "Hello, please input the range (min and max) of random number:";
+    String GUESS = "Guess the number";
     String WRONG_INPUT = "Your input is wrong, please input the number";
     String WRONG_NUMBERS = "Max number should be more than min";
-    String MORE = "-----------------More---------------------";
-    String LESS = "-----------------Less---------------------";
+    String MORE = "------------Number is More---------";
+    String LESS = "------------Number is Less---------";
 
     void printMessage(String message);
     void printWinningMessage(Integer secretNumber, Integer countOfAttempts, List<Integer> attempts);

@@ -16,8 +16,8 @@ public class ViewImpl implements View {
 
     public void printWinningMessage(Integer secretNumber, Integer countOfAttempts, List<Integer> attempts) {
         System.out.print(String.format("Congratulations, you won!!\n" +
-                                        "Your statistic:\n" +
                                         "The secret number is: %s\n" +
+                                        "Your statistic:\n" +
                                         "Count of your attempts: %s\n" +
                                         "Your attempts: ",
                                         secretNumber,countOfAttempts));
