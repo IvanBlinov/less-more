@@ -81,7 +81,7 @@ public class ControllerImpl implements Controller{
                         Integer number = Integer.parseInt(word);
                         if (min == null) {
                             min = number;
-                        } else if (max == null) {
+                        } else {
                             if (number > min) {
                                 max = number;
                             } else {
@@ -100,10 +100,6 @@ public class ControllerImpl implements Controller{
         }
         model.setMinRange(min == null ? 0 : min);
         model.setMaxRange(max == null ? Model.RAND_MAX : max);
-    }
-
-    private void checkNumber() {
-
     }
 
     private int getRandom(int min, int max) {
