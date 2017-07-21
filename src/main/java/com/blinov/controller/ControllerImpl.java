@@ -38,24 +38,28 @@ public class ControllerImpl implements Controller{
                 view.printMessage(View.WRONG_INPUT);
                 break;
             }
-            switch (checkForWin(current)) {
-                case 0 : {
-                    model.setWon(true);
-                    break;
-                }
-                case 1 : {
-                    view.printMessage(View.LESS);
-                    break;
-                }
-                case -1 : {
-                    view.printMessage(View.MORE);
-                    break;
-                }
-            }
-            model.incrementCountOfAttempts();
-            model.addAttempt(current);
+            makeMove(current);
         }
         view.printWinningMessage(model.getSecretNumber(), model.getCountOfAttempts(), model.getAttempts());
+    }
+
+    private void makeMove(Integer current) {
+        switch (checkForWin(current)) {
+            case 0 : {
+                model.setWon(true);
+                break;
+            }
+            case 1 : {
+                view.printMessage(View.LESS);
+                break;
+            }
+            case -1 : {
+                view.printMessage(View.MORE);
+                break;
+            }
+        }
+        model.incrementCountOfAttempts();
+        model.addAttempt(current);
     }
 
     private int checkForWin(Integer number) {
@@ -95,6 +99,10 @@ public class ControllerImpl implements Controller{
         }
         model.setMinRange(min == null ? 0 : min);
         model.setMaxRange(max == null ? Model.RAND_MAX : max);
+    }
+
+    private void checkNumber() {
+
     }
 
     private int getRandom(int min, int max) {
