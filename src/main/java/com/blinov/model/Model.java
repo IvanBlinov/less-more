@@ -16,7 +16,6 @@ public interface Model {
     int getMaxRange();
 
     void setWon(boolean won);
-    void setAttempts(List<Integer> attempts);
     void addAttempt(Integer attempt);
     void setSecretNumber(Integer number);
     void setMinRange(Integer minRange);
