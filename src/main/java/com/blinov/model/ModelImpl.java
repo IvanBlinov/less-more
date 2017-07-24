@@ -12,7 +12,6 @@ import java.util.List;
 @Component
 public class ModelImpl implements Model {
 
-    private Integer countOfAttempts;
     private List<Integer> attempts;
     private Integer secretNumber;
     private int minRange;
@@ -23,14 +22,9 @@ public class ModelImpl implements Model {
     private void init() {
         won = false;
         attempts = new ArrayList<>();
-        countOfAttempts = 0;
     }
 
     public boolean isWon() { return won; }
-
-    public int getCountOfAttempts() {
-        return countOfAttempts;
-    }
 
     public List<Integer> getAttempts() {
         return attempts;
@@ -47,12 +41,6 @@ public class ModelImpl implements Model {
     public void setWon(boolean won) { this.won = won; }
 
     public void setSecretNumber(Integer number) { this.secretNumber = number; }
-
-    public void setCountOfAttempts(int countOfAttempts) {
-        this.countOfAttempts = countOfAttempts;
-    }
-
-    public void incrementCountOfAttempts() { this.countOfAttempts += 1; }
 
     public void setAttempts(List<Integer> attempts) {
         this.attempts = attempts;

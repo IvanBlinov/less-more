@@ -32,41 +32,29 @@ public class ControllerImpl implements Controller{
         Scanner sc = new Scanner(System.in);
         Integer current;
         while (!model.isWon()) {
-            view.printMove(model.getMinRange(), model.getMaxRange(), model.getCountOfAttempts(), model.getAttempts());
+            view.printMove(model.getMinRange(), model.getMaxRange(), model.getAttempts().size(), model.getAttempts());
             if (sc.hasNextInt()) {
                 current = sc.nextInt();
+                makeMove(current);
             } else {
                 view.printMessage(View.WRONG_INPUT);
-                break;
+                sc.next();
             }
-            makeMove(current);
         }
-        view.printWinningMessage(model.getSecretNumber(), model.getCountOfAttempts(), model.getAttempts());
+        view.printWinningMessage(model.getSecretNumber(), model.getAttempts().size(), model.getAttempts());
     }
 
     private void makeMove(Integer current) {
-        switch (checkForWin(current)) {
-            case 0 : {
-                model.setWon(true);
-                break;
-            }
-            case 1 : {
-                view.printMessage(View.LESS);
-                break;
-            }
-            case -1 : {
-                view.printMessage(View.MORE);
-                break;
-            }
+        if (model.getSecretNumber() == current) {
+            model.setWon(true);
+        } else if (model.getSecretNumber() > current) {
+            view.printMessage(View.MORE);
+            model.setMinRange(current);
+        } else {
+            view.printMessage(View.LESS);
+            model.setMaxRange(current);
         }
-        model.incrementCountOfAttempts();
         model.addAttempt(current);
-    }
-
-    private int checkForWin(Integer number) {
-        if (number == model.getSecretNumber()) { return 0; }
-        if (number < model.getSecretNumber()) { return -1; }
-        return 1;
     }
 
     private void scanForNumbers() {
@@ -77,8 +65,11 @@ public class ControllerImpl implements Controller{
             while(max == null && (line = reader.readLine()).length() > 0) {
                 String[] words = line.split(" ");
                 for (String word : words) {
-                    try {
-                        Integer number = Integer.parseInt(word);
+                    Integer number = getInt(word);
+                    if (number == null) {
+                        min = null;
+                        view.printMessage(View.WRONG_INPUT);
+                    } else {
                         if (min == null) {
                             min = number;
                         } else {
@@ -89,9 +80,6 @@ public class ControllerImpl implements Controller{
                                 view.printMessage(View.WRONG_NUMBERS);
                             }
                         }
-                    } catch (NumberFormatException ex) {
-                        min = null;
-                        view.printMessage(View.WRONG_INPUT);
                     }
                 }
             }
@@ -100,6 +88,14 @@ public class ControllerImpl implements Controller{
         }
         model.setMinRange(min == null ? 0 : min);
         model.setMaxRange(max == null ? Model.RAND_MAX : max);
+    }
+
+    private Integer getInt(String word) {
+        try {
+            return Integer.parseInt(word);
+        } catch (NumberFormatException ex) {
+            return null;
+        }
     }
 
     private int getRandom(int min, int max) {

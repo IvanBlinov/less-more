@@ -11,15 +11,12 @@ public interface Model {
 
     boolean isWon();
     List<Integer> getAttempts();
-    int getCountOfAttempts();
     int getSecretNumber();
     int getMinRange();
     int getMaxRange();
 
     void setWon(boolean won);
     void setAttempts(List<Integer> attempts);
-    void setCountOfAttempts(int countOfAttempts);
-    void incrementCountOfAttempts();
     void addAttempt(Integer attempt);
     void setSecretNumber(Integer number);
     void setMinRange(Integer minRange);

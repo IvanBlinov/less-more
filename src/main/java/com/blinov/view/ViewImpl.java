@@ -26,7 +26,7 @@ public class ViewImpl implements View {
     }
 
     public void printMove(Integer min, Integer max, Integer countOfAttempts, List<Integer> attempts) {
-        System.out.print(String.format("Diapason is: [%s..%s]\n" +
+        System.out.print(String.format("Range is: [%s..%s]\n" +
                                         "Your count of moves: %s\n" +
                                         "Your attempts: ",
                 min,max,countOfAttempts));
