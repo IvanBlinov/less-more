@@ -98,9 +98,11 @@ public class ControllerImpl implements Controller{
         }
     }
 
-    private int getRandom(int min, int max) {
-        return new Random().nextInt(max - min) + min;
+    public int getRandom(int min, int max) {
+        return new Random().nextInt(max - min + 1) + min;
     }
+
+    public int getRandom() { return new Random().nextInt(Model.RAND_MAX) + 1;}
 
     private void greetings() {
         view.printMessage(View.GREETINGS);

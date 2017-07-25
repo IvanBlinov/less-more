@@ -6,4 +6,6 @@ package com.blinov.controller;
 public interface Controller {
 
     void processHandle();
+    int getRandom(int min, int max);
+    int getRandom();
 }
